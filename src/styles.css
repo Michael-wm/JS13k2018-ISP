@@ -11,6 +11,7 @@ html, body, div, span {
 
 #canvas-container {
     height: 100%;
+    grid-row: span 2;
     width: 100%;
 }
 
@@ -35,18 +36,11 @@ html, body, div, span {
     bottom: 46px;
     display: inline-grid;
     grid-template-columns: auto;
+    grid-template-rows: 50% 50%;
     left: 8px;
     position: fixed;
     right: 8px;
     top: 128px;
-}
-
-#game-main.-with-report {
-    grid-template-columns: 460px auto;
-}
-
-#game-main.-with-report #report{
-    display: block;
 }
 
 #game-main.-with-messages {
@@ -57,7 +51,27 @@ html, body, div, span {
     display: block;
 }
 
-#game-main.-with-messages.-with-report {
+#game-main.-with-report, #game-main.-with-minimap {
+    grid-template-columns: 460px auto;
+}
+
+#game-main.-with-report #report{
+    display: block;
+}
+
+#game-main.-with-minimap #minimap{
+    display: block;
+}
+
+#game-main.-with-report.-with-minimap #report{
+    grid-row: 2;
+}
+
+#game-main.-with-report.-with-minimap #minimap{
+    grid-row: 1;
+}
+
+#game-main.-with-messages.-with-report, #game-main.-with-messages.-with-minimap {
     grid-template-columns: 460px auto 460px;
 }
 
@@ -74,6 +88,7 @@ html, body, div, span {
 #messages {
     background-color: #C0C0C0;
     display: none;
+    grid-row: span 2;
     z-index: 1;
 }
 
@@ -139,7 +154,24 @@ html, body, div, span {
 #report {
     background-color: #C0C0C0;
     display: none;
+    grid-row: span 2;
     z-index: 1;
+}
+
+#minimap {
+    background-color: #C0C0C0;
+    display: none;
+    grid-row: span 2;
+    z-index: 1;
+}
+
+#minimap-cnv {
+    background-color: black;
+}
+
+.minimap-area {
+    padding: 10px;
+    text-align: center;
 }
 
 .bevel {

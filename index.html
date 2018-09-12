@@ -13,6 +13,10 @@
         </div>
         <div id="game-menu">
             <div id="dialogs" class="menu-area">
+                <div class="open-dialog menu-button bevel -active" data-dialog-type="MINIMAP">
+                    <span class="label">Overview</span>
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAFVBMVEUAAAD///+AgICCgki0tLQAAAD//45hhpxgAAAAAXRSTlMAQObYZgAAAEZJREFUCNdjAALWAAYICEsFU0yqqWFBCkCGcoiLi6sRiBEKBGCGIBCAGSIuLo7oIiLoIo6O6CIijoKoIsZAAGIwKQGBAgMAO04Oe5oG0dwAAAAASUVORK5CYII=" width="32" height="32" />
+                </div>
                 <div class="open-dialog menu-button bevel -active" data-dialog-type="REPORT">
                     <span class="label">Report</span>
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAFVBMVEUAAAD///+AgICCgki0tLQAAAD//45hhpxgAAAAAXRSTlMAQObYZgAAAEZJREFUCNdjAALWAAYICEsFU0yqqWFBCkCGcoiLi6sRiBEKBGCGIBCAGSIuLo7oIiLoIo6O6CIijoKoIsZAAGIwKQGBAgMAO04Oe5oG0dwAAAAASUVORK5CYII=" width="32" height="32" />
@@ -37,7 +41,18 @@
                 </div>
             </div>
         </div>
-        <div id="game-main" class="bevel -inset -with-report -with-messages">
+        <div id="game-main" class="bevel -inset -with-minimap -with-report -with-messages">
+            <div id="minimap" class="dialog bevel" data-dialog-type="MINIMAP">
+                <div class="title-bar">
+                    <div class="title-bar-text">Overview</div>
+                    <div class="title-bar-buttons">
+                        <div class="button bevel" data-button-action="close"><div class="close"></div></div>
+                    </div>
+                </div>
+                <div class="minimap-area">
+                    <canvas id="minimap-cnv" class="bevel -inset" width="300" height="300"></canvas>
+                </div>
+            </div>
             <div id="report" class="dialog bevel" data-dialog-type="REPORT">
                 <div class="title-bar">
                     <div class="title-bar-text">Company Report</div>

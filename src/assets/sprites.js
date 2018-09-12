@@ -14,7 +14,7 @@ const getCableColor = id => {
       colors[pos] = '000000'
     }
   })
-  return '000000' + colors.join('') + '000000000000'
+  return '000000' + colors.join('')
 }
 
 const typeString = (obj, base, arr, start = 0) => {
@@ -46,17 +46,17 @@ const spriteStrings = {
   HOUSE: {
     image: '@@@II@@@@@@II@@@@@@QJ@@@@@@RR@@@@@PRRB@@@@RRRR@@IQRRRRJIIIRRRRIIIIRRRRIIIIRIJRII@@RIRR@@@@RIRR@@@@@II@@@@@@II@@@@@@II@@@@@@II@@@',
     types: {
-      online: '00000000ff00000000000000000000000000000000',
-      offline: '000000ff0000000000000000000000000000000000',
-      slow: '000000ff7700000000000000000000000000000000'
+      online: '00000000ff00',
+      offline: '000000ff0000',
+      slow: '000000ff7700'
     }
   },
   HUB: {
     image: '@@@II@@@@@@II@@@@@@II@@@@TRTRSS@@ZRbRRb@@RRTRTR@IIIIIIIIITbRRcSIIZRbRRbIIRRTRbRI@@@II@@@@RRRTSS@@ZbRRTR@@TRbRbb@@@@II@@@@@@II@@@',
     types: {
-      active: '000000b3b3b300ff00b3b3b3000000000000000000',
-      defective: '000000b3b3b3ff7700b3b3b3000000000000000000',
-      destroyed: '000000b3b3b3ff0000999999000000000000000000'
+      active: '000000b3b3b300ff00b3b3b3',
+      defective: '000000b3b3b3ff7700b3b3b3',
+      destroyed: '000000b3b3b3ff0000999999'
     }
   }
 }

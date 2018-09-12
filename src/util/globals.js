@@ -8,7 +8,7 @@ module.exports = {
     SOUTH: [0, 1],
     WEST: [-1, 0]
   },
-  STARTING_BALANCE: 2500,
+  STARTING_BALANCE: 25000,
   BUILDING_COSTS: {
     CABLE: 1,
     HUB: 300,

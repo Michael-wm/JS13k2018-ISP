@@ -6,6 +6,7 @@ const ElementGrid = (() => {
   const s = require('../assets/sprites')
   const { evaluateConnections } = require('../gameManagement/connectionManager')
   const { openDialog } = require('../gui/dialog')
+  const { scrollTo } = require('../gui/scrollHelper')
 
   const { createHouse, manageHouse } = require('./house')
   const { createHub, manageHub } = require('./hub')
@@ -160,7 +161,7 @@ const ElementGrid = (() => {
   e.on('NEW_HOUSE', () => {
     const housePos = getRandHousePos()
     buildElement(housePos, 'HOUSE') // ToDo try again when space is blocked
-    m.postMessage('New Contract', `We just received a new contract from ${elements[transformGamePosToElementId(housePos)].name} at Customerstreet ${housePos.x}/${housePos.y}. The beginning of service is on ${g.getFutureDate(DAYS_TILL_CONTRACT_START)}. Please ensure a stable connection by then.`, 'Show on Map', () => console.log('INSERT CALLBACK'), 'success')
+    m.postMessage('New Contract', `We just received a new contract from ${elements[transformGamePosToElementId(housePos)].name} at Customerstreet ${housePos.x}/${housePos.y}. The beginning of service is on ${g.getFutureDate(DAYS_TILL_CONTRACT_START)}. Please ensure a stable connection by then.`, 'Show on Map', () => scrollTo(housePos), 'success')
   })
 
   return { buildElement, deleteElement, getElements, getElementsOfType, getEnergyConsumption, getOnlineHouseholds, openHubDialog }
