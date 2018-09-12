@@ -1,7 +1,7 @@
-const Event = require('../util/events')
-const { random } = require('../util/helpers')
-
 const GameManager = (() => {
+  const Event = require('../util/events')
+  const { random } = require('../util/helpers')
+
   let cs = {}
   let interval = null
 

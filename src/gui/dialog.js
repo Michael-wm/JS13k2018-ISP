@@ -1,6 +1,6 @@
-const { start, stop } = require('../gameManagement/gameManager')
-
 const Dialog = (() => {
+  const { start, stop } = require('../gameManagement/gameManager')
+
   const md = document.getElementById('dialog-overlay')
   const t = document.getElementById('modal-dialog-title')
   const b = document.getElementById('modal-dialog-body')

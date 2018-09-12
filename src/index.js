@@ -44,7 +44,7 @@ function draw () {
   ctx.canvas.width = canvasContainer.offsetWidth
   ctx.canvas.height = canvasContainer.offsetHeight
   ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-  ctx.drawImage(Grid.drawGrid(), scrollPos.x, scrollPos.y)
+  ctx.drawImage(Grid.drawGrid(), scrollPos.x - WORLD_HEIGHT / 2, scrollPos.y - WORLD_WIDTH / 2)
 }
 
 canvas.addEventListener('click', e => executeCurrentAction(e))
@@ -57,15 +57,27 @@ window.addEventListener('keydown', e => {
   switch (e.key) {
     case 'ArrowUp':
       scrollPos.y += FIELD_SIZE
+      if (scrollPos.y > WORLD_HEIGHT / 2) {
+        scrollPos.y = WORLD_HEIGHT / 2
+      }
       break
     case 'ArrowDown':
       scrollPos.y -= FIELD_SIZE
+      if (scrollPos.y < (WORLD_HEIGHT / -2) + ctx.canvas.height) {
+        scrollPos.y = WORLD_HEIGHT / -2 + ctx.canvas.height
+      }
       break
     case 'ArrowLeft':
       scrollPos.x += FIELD_SIZE
+      if (scrollPos.x > WORLD_WIDTH / 2) {
+        scrollPos.x = WORLD_WIDTH / 2
+      }
       break
     case 'ArrowRight':
       scrollPos.x -= FIELD_SIZE
+      if (scrollPos.x < (WORLD_WIDTH / -2) + ctx.canvas.width) {
+        scrollPos.x = WORLD_WIDTH / -2 + ctx.canvas.width
+      }
       break
     case 'm':
 

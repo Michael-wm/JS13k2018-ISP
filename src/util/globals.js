@@ -1,7 +1,7 @@
 module.exports = {
   FIELD_SIZE: 32,
-  WORLD_WIDTH: 2200,
-  WORLD_HEIGHT: 1200,
+  WORLD_WIDTH: 3200,
+  WORLD_HEIGHT: 3200,
   DIRECTIONS: {
     EAST: [1, 0],
     NORTH: [0, -1],

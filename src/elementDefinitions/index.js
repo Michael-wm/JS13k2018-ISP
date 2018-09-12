@@ -1,28 +1,28 @@
-const { transformGamePosToElementId, getIdInDirection, getOppositeDirection, random } = require('../util/helpers')
-const g = require('../gameManagement/gameManager')
-const e = require('../util/events')
-const m = require('../gui/messages')
-const s = require('../assets/sprites')
-const { evaluateConnections } = require('../gameManagement/connectionManager')
-const { openDialog } = require('../gui/dialog')
-
-const { createHouse, manageHouse } = require('./house')
-const { createHub, manageHub } = require('./hub')
-const { createCable, manageCable } = require('./cable')
-
-const constructors = {
-  HOUSE: createHouse,
-  CABLE: createCable,
-  HUB: createHub
-}
-
-const manager = {
-  HOUSE: manageHouse,
-  HUB: manageHub,
-  CABLE: manageCable
-}
-
 const ElementGrid = (() => {
+  const { transformGamePosToElementId, getIdInDirection, getOppositeDirection, random } = require('../util/helpers')
+  const g = require('../gameManagement/gameManager')
+  const e = require('../util/events')
+  const m = require('../gui/messages')
+  const s = require('../assets/sprites')
+  const { evaluateConnections } = require('../gameManagement/connectionManager')
+  const { openDialog } = require('../gui/dialog')
+
+  const { createHouse, manageHouse } = require('./house')
+  const { createHub, manageHub } = require('./hub')
+  const { createCable, manageCable } = require('./cable')
+
+  const constructors = {
+    HOUSE: createHouse,
+    CABLE: createCable,
+    HUB: createHub
+  }
+
+  const manager = {
+    HOUSE: manageHouse,
+    HUB: manageHub,
+    CABLE: manageCable
+  }
+
   let elements = {}
 
   const buildElement = (gamePos, type) => {
@@ -67,19 +67,19 @@ const ElementGrid = (() => {
   const maintainHub = (hubId, cost) => {
     const h = elements[hubId]
     h.status = 'active'
-    h.age = h.age / 3
+    h.age = Math.floor(h.age / 4)
     g.payMaintenance(cost)
   }
 
   const openHubDialog = hubId => {
     if (elements[hubId].status === 'active') {
       openDialog('Maintain Hub', 'The hub is working fine. Do You want to maintain it to improve reliability?', [
-        [`Maintain (${MAINTENANCE_COST}$)`, () => maintainHub(hubId, MAINTENANCE_COST), true],
+        [`Maintain ($${MAINTENANCE_COST})`, () => maintainHub(hubId, MAINTENANCE_COST), true],
         ['Cancel', null]
       ])
     } else if (elements[hubId].status === 'defective') {
       openDialog('Maintain Hub', 'The hub is defective. It needs repairing to work at full capacity. Do you want to repair it?', [
-        [`Repair (${REPAIR_COST}$)`, () => maintainHub(hubId, REPAIR_COST), true],
+        [`Repair ($${REPAIR_COST})`, () => maintainHub(hubId, REPAIR_COST), true],
         ['Cancel', null]
       ])
     } else {
@@ -142,7 +142,7 @@ const ElementGrid = (() => {
       const el = elements[e]
       if (el.type === 'HOUSE' && el.status === 'canceled') {
         removeConnections(e)
-        m.postMessage('Cancelation', `${el.name} just canceled his/her service contract. As this is clearly your fault we will fine you ${FINE}$.`, null, null, 'danger')
+        m.postMessage('Cancelation', `${el.name} just canceled his/her service contract. As this is clearly your fault we will fine you $${FINE}.`, null, null, 'danger')
         delete elements[e]
         g.payFine()
         continue
@@ -160,7 +160,7 @@ const ElementGrid = (() => {
   e.on('NEW_HOUSE', () => {
     const housePos = getRandHousePos()
     buildElement(housePos, 'HOUSE') // ToDo try again when space is blocked
-    m.postMessage('New Contract', `We just received a new contract at ${housePos.x}/${housePos.y}. The beginning of service is on ${g.getFutureDate(DAYS_TILL_CONTRACT_START)}. Please ensure a stable connection by then.`, 'Show on Map', () => console.log('INSERT CALLBACK'), 'success')
+    m.postMessage('New Contract', `We just received a new contract from ${elements[transformGamePosToElementId(housePos)].name} at Customerstreet ${housePos.x}/${housePos.y}. The beginning of service is on ${g.getFutureDate(DAYS_TILL_CONTRACT_START)}. Please ensure a stable connection by then.`, 'Show on Map', () => console.log('INSERT CALLBACK'), 'success')
   })
 
   return { buildElement, deleteElement, getElements, getElementsOfType, getEnergyConsumption, getOnlineHouseholds, openHubDialog }

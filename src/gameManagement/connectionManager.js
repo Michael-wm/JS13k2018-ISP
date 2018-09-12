@@ -1,6 +1,6 @@
-const { pathDetection } = require('../util/pathdetection')
-
 const ConnectionManager = (() => {
+  const { pathDetection } = require('../util/pathdetection')
+
   let state = {
     hubs: {},
     houses: {}

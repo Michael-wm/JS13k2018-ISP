@@ -1,9 +1,9 @@
-const Event = require('../util/events')
-const GameManager = require('../gameManagement/gameManager')
-const { showReport } = require('./report')
-const { openDialog } = require('./dialog')
-
 const GUI = (() => {
+  const Event = require('../util/events')
+  const GameManager = require('../gameManagement/gameManager')
+  const { showReport } = require('./report')
+  const { openDialog } = require('./dialog')
+
   const initGui = state => {
     const guiElements = document.getElementById('build-elements').getElementsByClassName('menu-button')
 
@@ -30,7 +30,7 @@ const GUI = (() => {
         ['Continue', null]])
     })
 
-    const drawBalance = () => { document.getElementById('balance-info').innerText = 'Balance: ' + GameManager.getBalance() }
+    const drawBalance = () => { document.getElementById('balance-info').innerText = `Balance: $${GameManager.getBalance()}` }
     const drawDate = () => { document.getElementById('date-info').innerText = GameManager.getDate() }
 
     Event.on('UPDATE_BALANCE', drawBalance)
