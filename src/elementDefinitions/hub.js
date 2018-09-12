@@ -22,14 +22,11 @@ const incAge = h => {
 const checkForDefects = h => {
   const t = random(HUB_WARRANTY, HUB_DEFECT_RANGE + HUB_WARRANTY)
   if (t < h.age) {
-    if (h.status === 'defective') { console.log('DESTROY THROW FOR DEFECTIVE HUB') }
     if (random(0, (HUB_DEFECT_RANGE - h.age) * (h.status === 'defective' ? 0.1 : 1)) < HUB_DESTROYED_CHANCE) {
       h.status = 'destroyed'
-      console.log('destroyed at age: ' + h.age + ' with throw: ' + t)
       m.postMessage('Hub Destroyed', `The hub at x/y is destroyed beyond repair. It needs to be demolished.`, 'Show hub on map', null, 'danger')
     } else if (h.status !== 'defective') {
       h.status = 'defective'
-      console.log('Defective at age: ' + h.age + ' with throw: ' + t)
       m.postMessage('Hub Defective', `The hub at `, 'Show hub on map', null, 'warning')
     }
   }

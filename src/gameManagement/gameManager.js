@@ -1,9 +1,11 @@
 const GameManager = (() => {
   const Event = require('../util/events')
   const { random } = require('../util/helpers')
+  const { widenSpawnRange } = require('./spawnManager')
 
   let cs = {}
   let interval = null
+  let range = 0
 
   const initCompanyState = state => {
     cs = state
@@ -20,7 +22,14 @@ const GameManager = (() => {
     incSpawnChance()
     Event.fire('NEXT_DAY')
     if (cs.currentDate.getMonth() !== currMonth) {
-      Event.fire('NEXT_MONTH')
+      HOUSE_SPAWN_COOLDOWN++
+      if (cs.currentDate.getMonth() % 2 === 0) {
+        if (range < 50) {
+          range += 10
+          widenSpawnRange(range)
+        }
+        Event.fire('NEXT_MONTH')
+      }
     }
   }
 

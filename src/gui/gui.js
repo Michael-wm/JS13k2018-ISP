@@ -1,4 +1,8 @@
-const GUI = (() => {
+/**
+ * GUI
+ */
+
+module.exports = (() => {
   const Event = require('../util/events')
   const GameManager = require('../gameManagement/gameManager')
   const { showReport } = require('./report')
@@ -40,6 +44,8 @@ const GUI = (() => {
     drawBalance()
     drawDate()
     showReport()
+
+    manageDialogs()
   }
 
   const manageDialogs = () => {
@@ -54,7 +60,9 @@ const GUI = (() => {
     const dialogTarget = dialogBtn.getAttribute('data-dialog-type')
 
     dialogBtn.addEventListener('click', () => {
-      gameMain.classList.toggle('-with-' + dialogTarget.toLowerCase())
+      const t = dialogTarget.toLowerCase()
+      gameMain.classList.toggle('-with-' + t)
+      document.getElementById(t + '-btn').classList.toggle('-active')
     })
   }
 
@@ -64,7 +72,9 @@ const GUI = (() => {
     const gameMain = document.getElementById('game-main')
 
     closeButton.addEventListener('click', () => {
-      gameMain.classList.remove('-with-' + closeTarget.toLowerCase())
+      const t = closeTarget.toLowerCase()
+      gameMain.classList.remove('-with-' + t)
+      document.getElementById(t + '-btn').classList.toggle('-active')
     })
   }
 
@@ -95,7 +105,5 @@ const GUI = (() => {
   const applyFunctionToCollection = (col, fn) => Array.from(col).forEach(fn)
   const removeActive = e => e.classList.remove('-active')
 
-  return { initGui, manageDialogs, closeFullscreen }
+  return { initGui, closeFullscreen }
 })()
-
-module.exports = GUI

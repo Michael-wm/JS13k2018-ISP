@@ -3,7 +3,7 @@
   Object.getOwnPropertyNames(globals).map(p => { global[p] = globals[p] })
 
   const { createGamePos, getCanvasPosFromScreenPos, transformGamePosToElementId } = require('./util/helpers')
-  const { initGui, manageDialogs, closeFullscreen } = require('./gui/gui')
+  const { initGui, closeFullscreen } = require('./gui/gui')
   const ElementGrid = require('./elementDefinitions')
   const GameManager = require('./gameManagement/gameManager')
   const Grid = require('./gui/grid')
@@ -94,12 +94,19 @@
   })
   GameManager.start()
 
-  ElementGrid.buildElement({x: -1, y: -5}, 'HOUSE')
-  ElementGrid.buildElement({x: 3, y: 8}, 'HOUSE')
-  ElementGrid.buildElement({x: 14, y: 7}, 'HUB')
+  ElementGrid.buildElement({x: 10, y: 5}, 'HOUSE', true)
+  ElementGrid.buildElement({x: 3, y: 8}, 'HOUSE', true)
+  ElementGrid.buildElement({x: 5, y: 5}, 'HUB', true)
+  ElementGrid.buildElement({x: 6, y: 5}, 'CABLE', true)
+  ElementGrid.buildElement({x: 7, y: 5}, 'CABLE', true)
+  ElementGrid.buildElement({x: 8, y: 5}, 'CABLE', true)
+  ElementGrid.buildElement({x: 9, y: 5}, 'CABLE', true)
+  ElementGrid.buildElement({x: 4, y: 5}, 'CABLE', true)
+  ElementGrid.buildElement({x: 3, y: 5}, 'CABLE', true)
+  ElementGrid.buildElement({x: 3, y: 6}, 'CABLE', true)
+  ElementGrid.buildElement({x: 3, y: 7}, 'CABLE', true)
 
   initGui(GAME_STATE)
-  manageDialogs(GAME_STATE)
 
   Event.on('GAME_OVER', () => {
     openDialog('Notice', 'We are sorry to inform you that this company just went bankrupt. Thank you for your service and the countless substantial contributions. You can go home now.', [['Exit', () => Event.fire('EXIT')], ['Restart', () => window.location.reload()]])

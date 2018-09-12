@@ -16,8 +16,7 @@ const Minimap = (() => {
     HOUSE: {
       online: '#00ff00',
       slow: '#ffbb00',
-      offline: '#ff0000',
-      pending: '#ff0000'
+      offline: '#ff0000'
     }
   }
 
@@ -25,10 +24,11 @@ const Minimap = (() => {
     if (ctx === null) {
       ctx = cnv.getContext('2d')
     }
+    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     Object.keys(e).forEach(id => {
       if (e[id].type !== 'CABLE') {
         const { x, y } = transformElementIdToGamePos(id)
-        ctx.fillStyle = colors[e[id].type][e[id].status]
+        ctx.fillStyle = colors[e[id].type][e[id].status] || '#ff0000'
         if (e[id].type === 'HUB') {
           ctx.fillRect((x - S) * S + W2 + 1, (y - S) * S + H2, 1, S)
           ctx.fillRect((x - S) * S + W2, (y - S) * S + H2 + 1, S, 1)

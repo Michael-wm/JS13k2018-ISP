@@ -7,6 +7,7 @@ const ElementGrid = (() => {
   const { evaluateConnections } = require('../gameManagement/connectionManager')
   const { openDialog } = require('../gui/dialog')
   const { scrollTo } = require('../gui/scrollHelper')
+  const { findSpawnPoint } = require('../gameManagement/spawnManager')
 
   const { createHouse, manageHouse } = require('./house')
   const { createHub, manageHub } = require('./hub')
@@ -26,7 +27,7 @@ const ElementGrid = (() => {
 
   let elements = {}
 
-  const buildElement = (gamePos, type) => {
+  const buildElement = (gamePos, type, free = false) => {
     if (g.getBalance() - BUILDING_COSTS[type] < 0) return false
     const elementId = transformGamePosToElementId(gamePos)
     if (isValidPosition(elementId)) {
@@ -34,7 +35,9 @@ const ElementGrid = (() => {
         connections: getConnections(gamePos)
       }
       elements[elementId] = Object.assign(newElementCfg, constructors[type](newElementCfg))
-      g.payBuildingCosts(type)
+      if (!free) {
+        g.payBuildingCosts(type)
+      }
       evaluateConnections(elements)
       return true
     }
@@ -133,11 +136,6 @@ const ElementGrid = (() => {
 
   const getProceeds = () => getOnlineHouseholds().length * PROCEEDS_PER_HOUSEHOLD - getEnergyConsumption()
 
-  const getRandHousePos = () => ({
-    x: random(0, 30),
-    y: random(0, 20)
-  })
-
   e.on('NEXT_DAY', () => {
     for (let e in elements) {
       const el = elements[e]
@@ -159,8 +157,10 @@ const ElementGrid = (() => {
   })
 
   e.on('NEW_HOUSE', () => {
-    const housePos = getRandHousePos()
-    buildElement(housePos, 'HOUSE') // ToDo try again when space is blocked
+    let housePos = findSpawnPoint(elements)
+    while (!buildElement(housePos, 'HOUSE')) {
+      housePos = findSpawnPoint(elements)
+    }
     m.postMessage('New Contract', `We just received a new contract from ${elements[transformGamePosToElementId(housePos)].name} at Customerstreet ${housePos.x}/${housePos.y}. The beginning of service is on ${g.getFutureDate(DAYS_TILL_CONTRACT_START)}. Please ensure a stable connection by then.`, 'Show on Map', () => scrollTo(housePos), 'success')
   })
 

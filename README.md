@@ -4,4 +4,6 @@ Manage a 1990s Internet Service Provider. Connect new customers, repair defectiv
 
 ### Instructions
 
-Build additional data hubs
+Connect the houses with the data hubs.
+
+Use arrow-keys/wasd to move the map or select a position in the minimap

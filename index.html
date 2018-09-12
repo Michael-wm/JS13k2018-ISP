@@ -13,15 +13,15 @@
         </div>
         <div id="game-menu">
             <div id="dialogs" class="menu-area">
-                <div class="open-dialog menu-button bevel -active" data-dialog-type="MINIMAP">
+                <div id="minimap-btn" class="open-dialog menu-button bevel -active" data-dialog-type="MINIMAP">
                     <span class="label">Overview</span>
-                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAFVBMVEUAAAD///+AgICCgki0tLQAAAD//45hhpxgAAAAAXRSTlMAQObYZgAAAEZJREFUCNdjAALWAAYICEsFU0yqqWFBCkCGcoiLi6sRiBEKBGCGIBCAGSIuLo7oIiLoIo6O6CIijoKoIsZAAGIwKQGBAgMAO04Oe5oG0dwAAAAASUVORK5CYII=" width="32" height="32" />
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAADFBMVEUAAAD///+AgIAAAIKJYod2AAAAAXRSTlMAQObYZgAAAC5JREFUCNdjQAL8B4CEzQcgYWDAwMC051cDA2f81QRkIjwURoSiEEyrVjWAzQAAWAYQpB2RO68AAAAASUVORK5CYII=" width="32" height="32" />
                 </div>
-                <div class="open-dialog menu-button bevel -active" data-dialog-type="REPORT">
+                <div id="report-btn" class="open-dialog menu-button bevel -active" data-dialog-type="REPORT">
                     <span class="label">Report</span>
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAFVBMVEUAAAD///+AgICCgki0tLQAAAD//45hhpxgAAAAAXRSTlMAQObYZgAAAEZJREFUCNdjAALWAAYICEsFU0yqqWFBCkCGcoiLi6sRiBEKBGCGIBCAGSIuLo7oIiLoIo6O6CIijoKoIsZAAGIwKQGBAgMAO04Oe5oG0dwAAAAASUVORK5CYII=" width="32" height="32" />
                 </div>
-                <div class="open-dialog menu-button bevel -active" data-dialog-type="MESSAGES">
+                <div id="messages-btn" class="open-dialog menu-button bevel -active" data-dialog-type="MESSAGES">
                     <span class="label">Messages</span>
                     <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQAgMAAABinRfyAAAADFBMVEUAAAD//46AgIAAAADAy77lAAAAAXRSTlMAQObYZgAAADZJREFUCNdjQAOrgIBha2hoHMPc0NAyhumhodcYpl4ND2OYXhp7jWFu/NcyiOzU0NAwiGJUAABHdxTx1+OX6AAAAABJRU5ErkJggg==" width="32" height="32" />
                 </div>
@@ -91,7 +91,7 @@
         </div>
         <div id="game-info">
             <div id="balance-info" class="info-block -balance">Balance: </div>
-            <div id="bandwidth-info" class="info-block -bandwidth">Bandwidth (needed/delivered): 5000/6000</div>
+            <div id="bandwidth-info" class="info-block -bandwidth">Bandwidth(delivered/required): 5000/6000</div>
             <div id="date-info" class="info-block -date"></div>
         </div>
         <div id="dialog-overlay" class="hidden">
