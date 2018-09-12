@@ -1,0 +1,95 @@
+<html>
+<head>
+    <title>JS13K - ISP</title>
+</head>
+<body>
+    <div id="game" class="bevel">
+        <div class="title-bar">
+            <div class="title-bar-text">ISP - Management Center</div>
+            <div class="title-bar-buttons">
+                <div id="fullscreen" class="button bevel"><div class="maximize"></div></div>
+                <div id="exit" class="button bevel"><div class="close"></div></div>
+            </div>
+        </div>
+        <div id="game-menu">
+            <div id="dialogs" class="menu-area">
+                <div class="open-dialog menu-button bevel -active" data-dialog-type="REPORT">
+                    <span class="label">Report</span>
+                </div>
+                <div class="open-dialog menu-button bevel -active" data-dialog-type="MESSAGES">
+                    <span class="label">Messages</span>
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAVCAYAAABVAo5cAAAAp0lEQVRIib3WQQ7DIAxE0e+Ie2dycrpKVCgGp4HMCsnCT4YFmKTMe7EEIImctU4xIQlJeQPIWZitAc3KYbZzsQKtsQKcjbawH3AW6mFN8Cnaw1zwX3SEdcG7aAQbglE0ioXAs5mHjup1UgQDf9K6PprUBVubR80iaPNI79yJh4bBJ1gELcAZ2Ai9wJlYD91WYR56vYcr890/ARzHUq9IAmzfweydv80HPDeBrXNAdpQAAAAASUVORK5CYII=" width="56" height="42" />
+                </div>
+            </div>
+            <div id="build-elements" class="menu-area">
+                <div class="menu-button -active bevel" data-element-type="CABLE">
+                    <span class="label">Cable</span>
+                </div>
+                <div class="menu-button bevel" data-element-type="HUB">
+                    <span class="label">Hub</span>
+                </div>
+                <div class="menu-button bevel" data-element-type="DELETE">
+                    <span class="label">Demolish</span>
+                </div>
+            </div>
+        </div>
+        <div id="game-main" class="bevel -inset -with-report -with-messages">
+            <div id="report" class="dialog bevel" data-dialog-type="REPORT">
+                <div class="title-bar">
+                    <div class="title-bar-text">Company Report</div>
+                    <div class="title-bar-buttons">
+                        <div class="button bevel" data-button-action="close"><div class="close"></div></div>
+                    </div>
+                </div>
+                <div class="report-area">
+                    <h3 id="report-heading">Report for September 1995</h3>
+                    <div id="report-contracts">Proceeds from contracts: 0</div>
+                    <div id="report-electricity">Electricity Costs: 0</div>
+                    <div id="report-earnings">Estimated earnings: 0</div>
+                </div>
+            </div>
+            <div id="canvas-container">
+                <canvas id="game-canvas"></canvas>
+            </div>
+            <div id="messages" class="dialog bevel" data-dialog-type="MESSAGES">
+                <div class="title-bar">
+                    <div class="title-bar-text">System Messages</div>
+                    <div class="title-bar-buttons">
+                        <div class="button bevel"><div class="close"></div></div>
+                    </div>
+                </div>
+                <div id="messages-display" class="bevel -inset">
+                    <div id="messages-list">
+                        <div class="message">
+                            <div class="message-title">Welcome</div>
+                            <div class="message-body">Welcome to the ISP Management Center</div>
+                            <div class="message-action">Click here for instructions</div>
+                        </div>
+                    </div>
+                </div>
+                <div id="messages-control"></div>
+            </div>
+        </div>
+        <div id="game-info">
+            <div id="balance-info" class="info-block -balance">Balance: </div>
+            <div id="bandwidth-info" class="info-block -bandwidth">Bandwidth (needed/delivered): 5000/6000</div>
+            <div id="date-info" class="info-block -date"></div>
+        </div>
+        <div id="dialog-overlay" class="hidden">
+            <div id="modal-dialog" class="bevel">
+                <div class="title-bar">
+                    <div id="modal-dialog-title" class="title-bar-text">System Messages</div>
+                </div>
+                <div id="modal-dialog-body"></div>
+                <div id="modal-dialog-buttons">
+                    <div class="dialog-button bevel">Repair</div>
+                    <div class="dialog-button bevel">Cancel</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="game-over"><div>Thank You for playing ISP<div></div>
+    <link rel="stylesheet" type="text/css" href="./src/styles.css">
+    <script src="./src/index.js"></script>
+</body>
+</html>
