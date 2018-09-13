@@ -9,7 +9,7 @@ const ConnectionManager = (() => {
   const getElementsOfType = (type, e) => {
     return Object.keys(e).reduce((acc, element) => {
       const el = e[element]
-      if (el.type === type && el.status !== 'canceled' && el.status !== 'destroyed') {
+      if (el.type === type && el.status !== 'cancelled' && el.status !== 'destroyed') {
         acc[element] = el
       }
       return acc

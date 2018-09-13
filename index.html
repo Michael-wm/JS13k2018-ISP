@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title>JS13K - ISP</title>
+    <title>JS13K2018 - ISP</title>
 </head>
 <body>
     <div id="game" class="bevel">
@@ -62,9 +62,21 @@
                 </div>
                 <div class="report-area">
                     <h3 id="report-heading">Report for September 1995</h3>
-                    <div id="report-contracts">Proceeds from contracts: 0</div>
-                    <div id="report-electricity">Electricity Costs: 0</div>
-                    <div id="report-earnings">Estimated earnings: 0</div>
+                    <h4>Revenue</h4>
+                    <div class="report-grid">
+                        <div>Proceeds from Contracts:</div><div class="report-value" id="report-contracts">$0</div>
+                    </div>
+                    <h4>Expenses</h4>
+                    <div class="report-grid">
+                        <div>Construction:</div><div class="report-value" id="report-construction">$0</div>
+                        <div>Electricity:</div><div class="report-value" id="report-electricity">$0</div>
+                        <div>Maintenance:</div><div class="report-value" id="report-maintenance">$0</div>
+                        <div>Fines:</div><div class="report-value" id="report-fines">$0</div>
+                    </div>
+                    <div class="report-grid" style="font-weight: bold; margin-top: 15px;">
+                        <div>Net Profit or Loss:</div><div class="report-value" id="report-earnings">$0</div>
+                    </div>
+
                 </div>
             </div>
             <div id="canvas-container">
@@ -81,8 +93,7 @@
                     <div id="messages-list">
                         <div class="message">
                             <div class="message-title">Welcome</div>
-                            <div class="message-body">Welcome to the ISP Management Center</div>
-                            <div class="message-action">Click here for instructions</div>
+                            <div class="message-body">Welcome to the ISP Management Center. It is your job to connect new customers to our data grid and maintain our data hubs. We will inform you about any future events in this message window.</div>
                         </div>
                     </div>
                 </div>
@@ -91,7 +102,6 @@
         </div>
         <div id="game-info">
             <div id="balance-info" class="info-block -balance">Balance: </div>
-            <div id="bandwidth-info" class="info-block -bandwidth">Bandwidth(delivered/required): 5000/6000</div>
             <div id="date-info" class="info-block -date"></div>
         </div>
         <div id="dialog-overlay" class="hidden">

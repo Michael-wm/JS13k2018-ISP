@@ -8,15 +8,7 @@ const createCable = ({ connections }) => {
   }
 }
 
-const setImage = c => {
-  c.image = s.CABLE(c.connections)
-}
-
-const manageCable = elements => c => {
-  let fnArray = []
-  //fnArray.push(setImage.bind(elements, c))
-  return fnArray
-}
+const manageCable = elements => c => []
 
 module.exports = {
   createCable,

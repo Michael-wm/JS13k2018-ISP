@@ -1,6 +1,6 @@
 const s = require('../assets/sprites')
 const m = require('../gui/messages')
-const { generateName } = require('../assets/customers')
+const { generateName, getText } = require('../assets/customers')
 
 const createHouse = elementCfg => {
   return {
@@ -29,13 +29,13 @@ const offlineCounter = h => {
   const s = h.status
   if (h.daysOffline === 0) {
     if (s === 'offline') {
-      m.postMessage(h.name, `Dude, where is my interwebz. Nothing's working. Fix this ASAP!`, null, null, 'user')
+      m.postMessage(h.name, getText('offline'), null, null, 'user')
     } else {
-      m.postMessage(h.name, `When will the connection be faster, brother?`, null, null, 'user')
+      m.postMessage(h.name, getText('slow'), null, null, 'user')
     }
   } else if (h.daysOffline >= 30) {
-    m.postMessage(h.name, `I'm cancelling my contract. You guys are incompetent. So sad.`, null, null, 'user')
-    h.status = 'canceled'
+    m.postMessage(h.name, getText('cancelled'), null, null, 'user')
+    h.status = 'cancelled'
   }
   h.daysOffline += h.status === 'offline' ? 3 : 1
 }
@@ -44,7 +44,8 @@ const setImage = h => {
   h.image = s.HOUSE(h.status)
 }
 
-const manageHouse = elements => h => {
+const manageHouse = elements => hId => {
+  const h = elements[hId]
   let fnArray = []
   if (h.contractStart > 0) {
     fnArray.push(countToContractStart.bind(elements, h))

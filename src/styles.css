@@ -78,7 +78,7 @@ html, body, div, span {
 #game-info {
     bottom: 8px;
     display: inline-grid;
-    grid-template-columns: auto auto 150px;
+    grid-template-columns: auto 150px;
     height: 34px;
     left: 8px;
     position: fixed;
@@ -156,6 +156,24 @@ html, body, div, span {
     display: none;
     grid-row: span 2;
     z-index: 1;
+}
+
+.report-area {
+    padding: 0 20px;
+}
+
+.report-area h4 {
+    margin-bottom: 10px;
+}
+
+.report-grid {
+    display: grid;
+    grid-template-columns: auto 100px;
+    grid-row-gap: 6px;
+}
+
+.report-value {
+    text-align: right;
 }
 
 #minimap {
@@ -302,9 +320,6 @@ html, body, div, span {
     line-height: 22px;
     margin-right: 4px;
     padding: 4px;
-}
-
-.info-block.-balance {
 }
 
 .info-block.-date {

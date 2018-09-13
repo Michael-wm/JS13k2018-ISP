@@ -139,15 +139,15 @@ const ElementGrid = (() => {
   e.on('NEXT_DAY', () => {
     for (let e in elements) {
       const el = elements[e]
-      if (el.type === 'HOUSE' && el.status === 'canceled') {
+      if (el.type === 'HOUSE' && el.status === 'cancelled') {
         removeConnections(e)
-        m.postMessage('Cancelation', `${el.name} just canceled his/her service contract. As this is clearly your fault we will fine you $${FINE}.`, null, null, 'danger')
+        m.postMessage('Cancelation', `${el.name} just cancelled his/her service contract. As this is clearly your fault we will fine you $${FINE}.`, null, null, 'danger')
         delete elements[e]
         g.payFine()
         continue
       }
       const manage = manager[el.type](elements)
-      manage(el).forEach(fn => fn())
+      manage(e).forEach(fn => fn())
     }
     evaluateConnections(elements)
   })
